@@ -1,0 +1,22 @@
+<button (click)="addNewSong()">Add New Song</button>
+<hr>
+<table border="1" cellpadding="10">
+    <thead>
+        <th style="width: 10em;">Flag</th>
+        <th style="width: 30em;">Title</th>
+        <th style="width: 15em;">Country</th>
+        <th style="width: 10em;">Listen Slots</th>
+        <th style="width: 10em;">Checked Out</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of songs">
+            <td><img src="assets/{{item.country_code}}.png" alt="" height="32px"></td>
+            <td>{{item.title}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.slot}}</td>
+            <td>{{item.checked_out}}</td>
+        </tr>
+    </tbody>
+</table>
+<button (click)="navToPlayList()">Listen</button>
+

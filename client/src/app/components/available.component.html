@@ -1,0 +1,29 @@
+<select [name]="user_id" id="user_id" style="width: 20em;" (change)="onUserChanged($event.target.value)">
+    <option *ngFor="let user of users" value="{{user.user_id}}">{{user.username}}
+    </option>
+</select>
+
+<br>
+<table border="1" cellpadding="10">
+    <thead>
+        <th style="width: 10em;">Flag</th>
+        <th style="width: 30em;">Title</th>
+        <th style="width: 15em;">Country</th>
+        <th style="width: 20em;"></th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of songs; let i = index">
+            <td><img src="assets/{{item.country_code}}.png" alt="" height="32px"></td>
+            <td>{{item.title}}</td>
+            <td>{{item.name}}</td>
+            <td>
+                <div *ngIf="(item.slot - item.checked_out) > 0">
+                    <button (click)="checkout(i)">Listen</button>
+                </div>
+                <p *ngIf="(item.slot - item.checked_out) <= 0">Not available</p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<br>
+<button (click)="dismiss()">Back</button>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Country } from '../models';
 import { FormService } from '../services/form.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-upload-form',
@@ -18,9 +19,15 @@ export class UploadFormComponent implements OnInit {
     { name: 'United Kingdom', code: 'uk'},
   ];
 
-  constructor(private formSvc: FormService) { }
+  constructor(private router: Router, 
+    private formSvc: FormService) { }
 
   ngOnInit() {
+    this.getListOfCountries();
+  }
+
+  dismiss() {
+    this.router.navigate(['/']);
   }
 
   private getListOfCountries() {

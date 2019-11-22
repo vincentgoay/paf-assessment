@@ -86,16 +86,4 @@ const rollback = (status) => {
 	)
 }
 
-const downloadImage = (params, connection) => {
-	return (new Promise(
-		(resolve, reject) => {
-			connection.getObject(params, (err, result) => {
-				if (err)
-					return reject(err);
-				resolve(result);
-			})
-		}
-	))
-}
-
 module.exports = { startTransaction, mkQuery, commit, rollback, mkQueryFromPool, passthru, logError};

@@ -18,27 +18,43 @@ insert into users(user_id, username) values
 	('820e8a4d', 'bambam'),
 	('fc42a34d', 'pebbles');
 
+-- create list of defaults countries with ISO3166 code
+create table if not exists countries (
+    name char(64) not null,
+    code varchar(4) not null,
+    
+    primary key (code)
+);
+
+insert into countries values 
+    ('Singapore', 'sg'),
+    ('Malaysia', 'my'),
+    ('United Kingdom', 'uk'),
+    ('United States of America', 'us'),
+    ('Russia', 'ru'),
+    ('Japan', 'jp');
+
 -- create songs table with auto increment id as primary key
 create table songs( 
-	song_id int auto_increment not null,
 	title varchar(128) not null,	-- song title
     song_url varchar(128) not null,	-- spaces filename
-    country char(64) not null,		-- store country code as ISO 3166
+    country_code char(4) not null,		-- store country code as ISO 3166
     lyrics text,
     slot int default 3,	
-    primary key (song_id)
+    available int not null,
+    primary key (country_code)
 );
 
 -- manage song checkout history
 create table if not exists checkouts (
 	id int auto_increment not null,
-    song_id int not null,
+    country_code char(4) not null,
     user_id varchar(8) not null,
 	timestamp timestamp default current_timestamp,
     
     primary key (id),
     constraint fk_song_id_tb_checkouts
-    foreign key(song_id) references songs(song_id),
+    foreign key(country_code) references songs(country_code),
     constraint fk_user_id_tb_checkouts
     foreign key(user_id) references users(user_id)
 );

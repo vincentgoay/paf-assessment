@@ -1,0 +1,20 @@
+<table>
+    <thead>
+        <th>Flag</th>
+        <th>Title</th>
+        <th>Country</th>
+        <th>Listen Slots</th>
+        <th>Checked Out</th>
+    </thead>
+    <tbody>
+        {{#each songs}}
+        <tr>
+            <td><img src="/server/public/images/{{item.country_code}}" alt=""></td>
+            <td>{{item.title}}</td>
+            <td>{{item.country}}</td>
+            <td>{{item.slot}}</td>
+            <td>{{item.checked_out}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>

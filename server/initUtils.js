@@ -1,7 +1,6 @@
 const fs = require('fs');
 const mysql = require('mysql');
 const aws = require('aws-sdk');
-const MongoClient = require('mongodb').MongoClient;
 
 const loadConfig = (config) => {
     const mysqlConfig = config.mysql;
@@ -15,7 +14,6 @@ const loadConfig = (config) => {
             accessKeyId: config.s3.accessKey,
             secretAccessKey: config.s3.secret
         }),
-        client: new MongoClient(config.mongodb.url, { useUnifiedTopology: true })
     }
 }
 
@@ -42,17 +40,6 @@ const testConnection = (conns) => {
             (resolve, reject) => {
                 // Need to setup a file online and read that file to do handshake
                 resolve();
-            }
-        ),
-        new Promise(
-            (resolve, reject) => {
-                conns.client.connect(
-                    (err, _) => {
-                        if (err)
-                            return reject(err)
-                        resolve();
-                    }
-                )
             }
         )
     ]
