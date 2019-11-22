@@ -1,0 +1,17 @@
+Task 1
+Write your schemas below. Consider your MySQL database as part of the given music database.
+
+
+
+
+Explain briefly your choice of persistence store.
+
+
+Task 7
+Using the information capture by your application's data model and the database connections/pool declared in your application, 
+show using JavaScript, the ranking of national anthems by their listening popularity across your service's user base. 
+You should rank your the songs from the most popular to the least popular. The ranking information must include the following 
+- song name
+- number of the times it was listen
+- the last time (date and time) the song was listen
+
