@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Country } from '../models';
+import { FormService } from '../services/form.service';
 
 @Component({
   selector: 'app-upload-form',
@@ -17,9 +18,18 @@ export class UploadFormComponent implements OnInit {
     { name: 'United Kingdom', code: 'uk'},
   ];
 
-  constructor() { }
+  constructor(private formSvc: FormService) { }
 
   ngOnInit() {
   }
 
+  private getListOfCountries() {
+    this.formSvc.getListOfCountries()
+    .then(result => {
+      this.countries = result;
+    })
+    .catch(err => {
+      console.log('Error: ', err);
+    })
+  }
 }

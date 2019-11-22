@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Country } from '../models';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class FormService {
     private http: HttpClient
   ) { }
 
-  getListOfCountries(): Promise<any> {
-    return this.http.get<any>('/api/g/countries').toPromise()
+  getListOfCountries(): Promise<Country[]> {
+    return this.http.get<Country[]>('/api/g/countries').toPromise()
   }
 }
