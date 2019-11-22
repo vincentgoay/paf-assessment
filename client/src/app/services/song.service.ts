@@ -36,4 +36,12 @@ export class SongService {
 
     return this.http.get<any>(`/api/song/checkout`, { params, headers }).toPromise();
   }
+
+  getSong(country_code): Promise<any> {
+    const headers: HttpHeaders = new HttpHeaders()
+      .set('Accept', 'application/json')
+      .set('Content-Type', 'application/json');
+
+    return this.http.get<any>(`/api/song/${country_code}`).toPromise();
+  }
 }
